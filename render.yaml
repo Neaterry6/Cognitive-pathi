@@ -1,9 +1,8 @@
-# render.yaml
 services:
   - type: web
     name: cbt-learning-platform
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: cp -r attached_assets/ src/attached_assets/ || true && npm install && npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_ENV
@@ -29,19 +28,9 @@ services:
     healthCheckPath: /
     disk:
       name: cbt-storage
-      mountPath: /opt/render/project/src/uploads
+      mountPath: /opt/render/project/src/attached_assets
       sizeGB: 1
 
 databases:
   - name: cbt-db
     databaseName: cbt_learning
-    user: cbt_user
-    plan: free
-    region: oregon
-
-# Optional post-deploy migration (manual trigger recommended)
-# - type: cron
-#   name: db-migration
-#   schedule: "0 0 * * *" # Runs daily at midnight UTC
-#   env: node
-#   runCommand: npm run db:push
