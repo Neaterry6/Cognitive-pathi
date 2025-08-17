@@ -4,13 +4,16 @@ services:
     name: cognitive-path
     env: node
     buildCommand: |
-      # Ensure assets are available in src/ (copy from root if exists)
+      # Ensure assets are available in src/
       mkdir -p src/attached_assets/generated_images || true
       cp -r attached_assets/generated_images/* src/attached_assets/generated_images/ || true
       # Install dependencies and build
       npm install
       npm run build
-    startCommand: npm run start
+    startCommand: |
+      # Navigate to the build root and start the app
+      cd /opt/render/project || cd /opt/render/project/src || echo "Failed to set directory" && exit 1
+      npm run start
     envVars:
       - key: NODE_ENV
         value: production
