@@ -1,12 +1,12 @@
-
 # render.yaml
 services:
   - type: web
     name: cognitive-path
     env: node
     buildCommand: |
-      # Copy assets to src/ if they exist in root
-      cp -r attached_assets/ src/attached_assets/ || true
+      # Ensure assets are available in src/ (copy from root if exists)
+      mkdir -p src/attached_assets/generated_images || true
+      cp -r attached_assets/generated_images/* src/attached_assets/generated_images/ || true
       # Install dependencies and build
       npm install
       npm run build
@@ -44,10 +44,3 @@ databases:
     user: cognitive_path_user
     plan: free
     region: oregon
-
-# Optional: Manual database migration (run post-deployment)
-# - type: cron
-#   name: db-migration
-#   schedule: "0 0 * * *" # Daily at midnight UTC
-#   env: node
-#   runCommand: npm run db:push
