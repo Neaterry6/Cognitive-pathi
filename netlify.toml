@@ -1,0 +1,44 @@
+[build]
+  publish = "client/dist"
+  command = "npm install && npm run build"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_ENV = "production"
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--prefix=/opt/buildhome/.nodejs/lib/node_modules/npm"
+
+[dev]
+  command = "npm run dev"
+  port = 5000
+  publish = "client/dist"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
+  
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"

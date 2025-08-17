@@ -1,0 +1,37 @@
+[app]
+name = "cbt-learning-platform"
+
+[[services]]
+name = "cbt-web"
+type = "web"
+
+[services.build]
+type = "buildpack"
+builder = "heroku/nodejs"
+
+[services.build.env]
+NODE_ENV = "production"
+NPM_CONFIG_PRODUCTION = "false"
+
+[services.scaling]
+min = 1
+max = 2
+
+[services.ports]
+http = 8080
+
+[services.health_check]
+path = "/api/health"
+port = 8080
+protocol = "http"
+grace_period = "5s"
+
+[services.env]
+PORT = "8080"
+NODE_ENV = "production"
+
+[services.regions]
+fra = 1
+
+[services.routes]
+path = "/"

@@ -1,0 +1,15 @@
+{
+  "name": "rest-express",
+  "module": "index.js",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "NODE_ENV=development tsx server/index.ts",
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "build": "npm run build:client",
+    "build:client": "cd client && npm install && npm run build",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  }
+}

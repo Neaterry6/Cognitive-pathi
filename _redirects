@@ -1,0 +1,3 @@
+# Netlify redirects file for client-side routing
+/api/* /.netlify/functions/api/:splat 200
+/* /index.html 200
