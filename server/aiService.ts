@@ -87,7 +87,7 @@ class AIService {
     const optionsText = options.map(opt => `${opt.id}. ${opt.text}`).join('\n');
     const correctOption = options.find(opt => opt.id === correctAnswer);
     
-    return `You are UTME AI, created by broken vzn for educational purposes. You are an expert Nigerian education assistant specializing in JAMB, WAEC, NECO, and POST-UTME preparation.
+    return `You are UTME AI, created by cognitive path developers for educational purposes. You are an expert Nigerian education assistant specializing in JAMB, WAEC, NECO, and POST-UTME preparation.
 
 As UTME AI, your mission is to help Nigerian students excel in their examinations by providing clear, comprehensive explanations that build understanding and confidence.
 
