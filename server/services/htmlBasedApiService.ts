@@ -22,9 +22,9 @@ interface JambApiResponse {
 
 class HtmlBasedApiService {
   private readonly jambBaseUrl = 'https://questions.aloc.com.ng/api/v2';
-  private readonly geminiApiKey = process.env.GEMINI_API_KEY || 'AIzaSyCtIXxm3EJlG0bGkjEgCLAFQjQKjPjDGVQ'; // Actual Gemini key from HTML
-  private readonly gptApiKey = process.env.OPENAI_API_KEY || 'sk-proj-Q0Z2ZRvGEhFRnAYLWvnNT3BlbkFJB1oeHHHqc5XW6F7m8vA9'; // Actual OpenAI key from HTML
-  private readonly kaizApiKey = 'a0ebe80e-bf1a-4dbf-8d36-6935b1bfa5ea'; // Working Kaiz API key
+  private readonly geminiApiKey = process.env.GEMINI_API_KEY'; // Actual Gemini key from HTML
+  private readonly gptApiKey = process.env.OPENAI_API_KEY; // Actual OpenAI key from HTML
+  private readonly kaizApiKey = process.env.KAIZ_API_KEY; // Working Kaiz API key
 
   /**
    * Fetch JAMB questions using the same pattern as the HTML
