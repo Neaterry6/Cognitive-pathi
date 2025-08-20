@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import { X, ExternalLink } from 'lucide-react';
 
-// Import the generated images
-import studentsImage from '@assets/generated_images/Nigerian_JAMB_students_studying_97f99c18.png';
-import cbtCenterImage from '@assets/generated_images/Nigerian_CBT_exam_center_e7c2462b.png';
-import successImage from '@assets/generated_images/Nigerian_university_admission_success_472aace3.png';
-import appInterfaceImage from '@assets/generated_images/Educational_app_interface_design_2693b7a2.png';
-
+// Instead of importing individual files, just use relative paths:
 const AD_IMAGES = [
-  studentsImage,
-  cbtCenterImage, 
-  successImage,
-  appInterfaceImage
+  '/attached_assets/generated_images/IMG-20250820-WA0163.jpg',
+  '/attached_assets/generated_images/IMG-20250820-WA0164.jpg',
+  '/attached_assets/generated_images/IMG-20250820-WA0165.jpg',
+  '/attached_assets/generated_images/IMG-20250820-WA0166.jpg'
 ];
 
 const AD_CONTENT = [
@@ -45,7 +40,6 @@ interface MovingAdsProps {
 export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }: MovingAdsProps) {
   const [currentAdIndex, setCurrentAdIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(() => {
-    // Only show ads on first page after login if specified
     if (showOnlyOnFirstPage) {
       const hasSeenAds = localStorage.getItem('hasSeenAdsToday');
       const today = new Date().toDateString();
@@ -57,18 +51,16 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
   const [position, setPosition] = useState({ x: 20, y: 100 });
 
   useEffect(() => {
-    // Rotate through ads every 10 seconds
     const adRotationInterval = setInterval(() => {
       setCurrentAdIndex((prevIndex) => (prevIndex + 1) % AD_IMAGES.length);
     }, 10000);
 
-    // Scroll the ad banner horizontally instead of moving randomly
     const moveInterval = setInterval(() => {
       setPosition(prev => ({
         x: prev.x + 100 > window.innerWidth - 320 ? 0 : prev.x + 100,
-        y: prev.y // Keep y position fixed
+        y: prev.y 
       }));
-    }, 3000); // Slower, smoother scrolling
+    }, 3000);
 
     return () => {
       clearInterval(adRotationInterval);
@@ -89,11 +81,9 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
       }}
       data-testid="moving-ad-banner"
     >
-      {/* Close button */}
       <button
         onClick={() => {
           setIsVisible(false);
-          // Mark ads as seen for today
           localStorage.setItem('hasSeenAdsToday', 'true');
           localStorage.setItem('lastAdDate', new Date().toDateString());
         }}
@@ -103,28 +93,23 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
         <X className="h-3 w-3" />
       </button>
 
-      {/* Ad content */}
       <div className="relative w-full h-full overflow-hidden rounded-xl">
-        {/* Background image */}
         <img
           src={AD_IMAGES[currentAdIndex]}
           alt="Advertisement"
           className="w-full h-full object-cover"
           onError={(e) => {
-            // Fallback if image fails to load
             const target = e.target as HTMLImageElement;
             target.style.display = 'none';
           }}
         />
         
-        {/* Overlay content */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4">
           <div className="text-white">
             <h3 className="text-sm font-bold mb-1">{AD_CONTENT[currentAdIndex].title}</h3>
             <p className="text-xs opacity-90 mb-2">{AD_CONTENT[currentAdIndex].description}</p>
             <button
               onClick={() => {
-                // Scroll to features or trigger action
                 const element = document.getElementById('features-section');
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth' });
@@ -139,11 +124,9 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
           </div>
         </div>
 
-        {/* Animated border */}
         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 opacity-50 animate-pulse pointer-events-none"></div>
       </div>
 
-      {/* Ad indicator dots */}
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
         {AD_IMAGES.map((_, index) => (
           <div
