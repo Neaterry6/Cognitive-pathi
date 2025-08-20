@@ -37,7 +37,8 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
   const images = [
     'https://files.catbox.moe/boiqvi.jpg',
     'https://files.catbox.moe/sfh1ii.jpg',
-    'https://intre0
+    'https://files.catbox.moe/y3kwnd.jpg',
+    'https://files.catbox.moe/vt8j0l.png',
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
