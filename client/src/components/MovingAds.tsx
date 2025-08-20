@@ -1,35 +1,35 @@
 import { useState, useEffect } from 'react';
 import { X, ExternalLink } from 'lucide-react';
 
-// Instead of importing individual files, just use relative paths:
+// Use Catbox URLs directly
 const AD_IMAGES = [
-  '/attached_assets/generated_images/IMG-20250820-WA0163.jpg',
-  '/attached_assets/generated_images/IMG-20250820-WA0164.jpg',
-  '/attached_assets/generated_images/IMG-20250820-WA0165.jpg',
-  '/attached_assets/generated_images/IMG-20250820-WA0166.jpg'
+  'https://files.catbox.moe/duzi52.jpg',
+  'https://files.catbox.moe/a99x1t.jpg',
+  'https://files.catbox.moe/a99x1t.jpg',
+  'https://files.catbox.moe/1c2t6w.jpg',
 ];
 
 const AD_CONTENT = [
   {
     title: "JAMB Preparation",
     subtitle: "Join thousands of successful candidates",
-    description: "Premium study materials & practice tests"
+    description: "Premium study materials & practice tests",
   },
   {
     title: "CBT Practice",
     subtitle: "Real exam experience",
-    description: "Authentic CBT simulation environment"
+    description: "Authentic CBT simulation environment",
   },
   {
     title: "Success Stories",
     subtitle: "Join our successful students",
-    description: "Achieve your university dreams"
+    description: "Achieve your university dreams",
   },
   {
     title: "Premium Access",
     subtitle: "Unlock your potential",
-    description: "Advanced features & detailed analytics"
-  }
+    description: "Advanced features & detailed analytics",
+  },
 ];
 
 interface MovingAdsProps {
@@ -56,9 +56,9 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
     }, 10000);
 
     const moveInterval = setInterval(() => {
-      setPosition(prev => ({
+      setPosition((prev) => ({
         x: prev.x + 100 > window.innerWidth - 320 ? 0 : prev.x + 100,
-        y: prev.y 
+        y: prev.y,
       }));
     }, 3000);
 
@@ -103,7 +103,7 @@ export default function MovingAds({ showOnlyOnFirstPage = true, className = '' }
             target.style.display = 'none';
           }}
         />
-        
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4">
           <div className="text-white">
             <h3 className="text-sm font-bold mb-1">{AD_CONTENT[currentAdIndex].title}</h3>
