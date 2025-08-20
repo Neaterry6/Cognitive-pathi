@@ -24,11 +24,6 @@ import {
 } from 'lucide-react';
 import MovingAds from '@/components/MovingAds';
 
-// Import the user images - using the screenshots provided
-import heroImage1 from '@assets/Screenshot_20250814-015625_1755134511147.png';
-import heroImage2 from '@assets/Screenshot_20250814-020345_1755134511180.png';
-import heroImage3 from '@assets/Screenshot_20250814-020636_1755134511207.png';
-
 interface LandingPageProps {
   onNavigateToLogin: () => void;
   onNavigateToSignup: () => void;
@@ -38,17 +33,11 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [notificationCount, setNotificationCount] = useState(3);
 
-  const images = [heroImage1, heroImage2, heroImage3];
-
-  // Auto-scroll images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // Change every 4 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
+  // Use Catbox URLs directly
+  const images = [
+    'https://files.catbox.moe/boiqvi.jpg',
+    'https://files.catbox.moe/sfh1ii.jpg',
+    'https://intre0
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -79,7 +68,7 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
       icon: <Target className="h-8 w-8" />,
       title: "Personalized Study Plans",
       description: "AI-generated study schedules tailored to your strengths, weaknesses, and exam timeline.",
-    }
+    },
   ];
 
   const testimonials = [
@@ -88,29 +77,29 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
       score: "346/400",
       course: "Medicine and Surgery",
       text: "CognitivePath helped me achieve my dream JAMB score! The CBT practice was exactly like the real exam.",
-      avatar: "AO"
+      avatar: "AO",
     },
     {
       name: "Emeka Johnson",
-      score: "298/400", 
+      score: "298/400",
       course: "Engineering",
       text: "The AI explanations made complex physics and mathematics topics so much easier to understand.",
-      avatar: "EJ"
+      avatar: "EJ",
     },
     {
       name: "Fatima Aliyu",
       score: "312/400",
       course: "Law",
       text: "Best UTME prep platform! The study scheduler kept me organized throughout my preparation.",
-      avatar: "FA"
-    }
+      avatar: "FA",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       {/* Moving Ads Component */}
       <MovingAds showOnlyOnFirstPage={true} />
-      
+
       {/* Navigation Header */}
       <header className="bg-white/10 backdrop-blur-md border-b border-white/20">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -187,8 +176,8 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-6 text-lg"
               onClick={onNavigateToSignup}
               data-testid="button-signup-hero"
@@ -196,9 +185,9 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
               Start Free Trial
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg"
               onClick={onNavigateToLogin}
               data-testid="button-login-hero"
@@ -239,7 +228,7 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
                 />
               ))}
             </div>
-            
+
             {/* Image indicators */}
             <div className="flex justify-center space-x-2 mt-4">
               {images.map((_, index) => (
@@ -336,8 +325,8 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
             Join over 50,000 students who trust CognitivePath for their JAMB and POST-UTME preparation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-12 py-6 text-lg"
               onClick={onNavigateToSignup}
               data-testid="button-signup-cta"
@@ -345,9 +334,9 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
               Get Started Free
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="border-white/20 text-white hover:bg-white/10 px-12 py-6 text-lg"
               onClick={onNavigateToLogin}
               data-testid="button-login-cta"
@@ -376,4 +365,5 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
       </footer>
     </div>
   );
-}
+      } 
+                
