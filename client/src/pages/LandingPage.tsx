@@ -38,7 +38,17 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
     'https://files.catbox.moe/boiqvi.jpg',
     'https://files.catbox.moe/sfh1ii.jpg',
     'https://files.catbox.moe/y3kwnd.jpg',
-    'https://files.catbox.moe/vt8j0l.png',
+  ];
+
+  // Auto-scroll images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -319,7 +329,7 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-white threemb-4">
             Ready to Start Your Success Journey?
           </h2>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
@@ -366,5 +376,4 @@ export default function LandingPage({ onNavigateToLogin, onNavigateToSignup }: L
       </footer>
     </div>
   );
-      } 
-                
+}
